@@ -1,0 +1,125 @@
+/*
+
+Copyright _ 2005, Apple Computer, Inc.  All rights reserved.
+NOTE:  Use of this source code is subject to the terms of the Software
+License Agreement for Mac OS X, which accompanies the code.  Your use
+of this source code signifies your agreement to such license terms and
+conditions.  Except as expressly granted in the Software License Agreement
+for Mac OS X, no other copyright, patent, or other intellectual property
+license or right is granted, either expressly or by implication, by Apple.
+
+*/
+
+body
+    {
+    margin: 0;
+    }
+
+#time
+    {
+    font: 14px "Lucida Grande";
+    font: 20px  "Georgia";
+    font-weight: normal;
+    color: black;
+    position: absolute;
+    top: 61px;
+    top: 46px;
+    text-align: center;
+    width: 199px;
+    left: 0px;
+    }
+
+#overlay
+    {
+    font: 35px "Lucida Grande";
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    top: 0;
+    text-align: center;
+    width: 199px;
+    left: 0px;
+    display: none;
+    }
+
+.flip
+    {
+    position: absolute;
+    bottom: 17px;
+    right: 17px;
+    width: 13px;
+    height: 13px;
+    }
+
+#flip
+    {
+    opacity: 0;
+    background: url(file:///System/Library/WidgetResources/ibutton/white_i.png) no-repeat top left;
+    z-index:8000;
+    }
+
+#fliprollie
+    {
+    display: none;
+    opacity: 0.25;
+    background: url(file:///System/Library/WidgetResources/ibutton/white_rollie.png) no-repeat top left;
+    z-index:7999;
+    }
+
+.done
+    {
+    position: absolute;
+    bottom: 17px;
+    left: 77px;
+    }
+
+#back
+    {
+    display: none;
+    }
+
+.title
+    {
+    font: 20px "Lucida Grande";
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    top: 16px;
+    left: 18px;
+    }
+
+.date
+    {
+    font: 10px "Lucida Grande";
+    font-weight: normal;
+    color: black;
+    position: absolute;
+    top: 45px;
+    left: 18px;
+    }
+
+.time
+    {
+    font: 10px "Lucida Grande";
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    top: 71px;
+    left: 18px;    
+    }
+
+.copyright
+    {
+    font: 10px "Lucida Grande";
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    text-align: right;
+    }
+
+a
+    {
+    color: white;
+    }
