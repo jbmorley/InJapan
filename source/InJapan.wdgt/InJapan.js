@@ -94,7 +94,7 @@ function savePreferences() {
     var year = yearSelect.selectedIndex + 105;
     var hour = hourSelect.selectedIndex;
     var minute = minuteSelect.selectedIndex;
-    var country = countrySelect.selectedIndex;
+    var country = countrySelect.selectedIndex + 1;
 
     // Save the setting.
     widget.setPreferenceForKey(day, createKey("Day"));
