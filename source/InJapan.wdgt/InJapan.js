@@ -67,6 +67,7 @@ function loadPreferences() {
     // Set the elements.
     daySelect.options[day-1].selected = true;
     monthSelect.options[month].selected = true;
+    // TODO
     yearSelect.options[year-105].selected = true;
     hourSelect.options[hour].selected = true;
     minuteSelect.options[minute].selected = true;
@@ -89,9 +90,9 @@ function savePreferences() {
     var countrySelect = document.getElementById("country");
 
     // Get the time.
-    var day = daySelect.selectedIndex + 1;
-    var month = monthSelect.selectedIndex;
-    var year = yearSelect.selectedIndex + 105;
+    var day = daySelect.options[daySelect.selectedIndex].value;
+    var month = monthSelect.options[monthSelect.selectedIndex].value - 1;
+    var year = yearSelect.options[yearSelect.selectedIndex].value - 1900;
     var hour = hourSelect.selectedIndex;
     var minute = minuteSelect.selectedIndex;
     var country = countrySelect.selectedIndex;
