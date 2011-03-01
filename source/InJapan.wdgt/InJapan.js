@@ -44,12 +44,15 @@ function loadPreferences() {
         year = now.getYear();
         hour = now.getHours();
         minute = now.getMinutes();
+        
+        // Snap the minutes to multiples of 5.
+		minute = parseInt(minute/5) * 5;
 
         // Save these as the settings for this widget.
-        widget.setPreferenceForKey(day, createKey("Day"));
-        widget.setPreferenceForKey(month, createKey("Month"));
-        widget.setPreferenceForKey(year, createKey("Year"));
-        widget.setPreferenceForKey(hour, createKey("Hour"));
+        widget.setPreferenceForKey(day,    createKey("Day"));
+        widget.setPreferenceForKey(month,  createKey("Month"));
+        widget.setPreferenceForKey(year,   createKey("Year"));
+        widget.setPreferenceForKey(hour,   createKey("Hour"));
         widget.setPreferenceForKey(minute, createKey("Minute"));
 
     }
@@ -65,13 +68,12 @@ function loadPreferences() {
     }
 
     // Set the elements.
-    daySelect.options[day-1].selected = true;
-    monthSelect.options[month].selected = true;
-    // TODO
-    yearSelect.options[year-105].selected = true;
-    hourSelect.options[hour].selected = true;
-    minuteSelect.options[minute].selected = true;
-    countrySelect.options[Country].selected = true;
+    selectOption('day', day);
+    selectOption('month', month+1);
+    selectOption('year', year+1900);
+    selectOption('hour', hour);
+    selectOption('minute', minute);
+    selectOption('country', country);
 
     // Set the time.
     Expires = new Date(year+1900, month, day, hour, minute, 00);
@@ -80,38 +82,53 @@ function loadPreferences() {
     displayCountry();     
 }
 
+function selectOption(name, value) {
+	var select = document.getElementById(name);
+	for (var i=0; i<select.options.length; i++) {
+		if (select.options[i].value == value) {
+			select.options[i].selected = true;
+		}
+	}
+	/*
+	for (options in select.options) {
+		if (options.value == value) {
+			options.selected = true;
+			break;
+		}
+	}
+	*/
+}
+
 function savePreferences() {
     // Get the elements.
-    var daySelect = document.getElementById("day");
-    var monthSelect = document.getElementById("month");
-    var yearSelect = document.getElementById("year");
-    var hourSelect = document.getElementById("hour");
-    var minuteSelect = document.getElementById("minute");
+    var daySelect     = document.getElementById("day");
+    var monthSelect   = document.getElementById("month");
+    var yearSelect    = document.getElementById("year");
+    var hourSelect    = document.getElementById("hour");
+    var minuteSelect  = document.getElementById("minute");
     var countrySelect = document.getElementById("country");
 
     // Get the time.
-    var day = daySelect.options[daySelect.selectedIndex].value;
-    var month = monthSelect.options[monthSelect.selectedIndex].value - 1;
-    var year = yearSelect.options[yearSelect.selectedIndex].value - 1900;
-    var hour = hourSelect.selectedIndex;
-    var minute = minuteSelect.selectedIndex;
-    var country = countrySelect.selectedIndex;
+    var day     = daySelect.options[daySelect.selectedIndex].value;
+    var month   = monthSelect.options[monthSelect.selectedIndex].value - 1;
+    var year    = yearSelect.options[yearSelect.selectedIndex].value - 1900;
+    var hour    = hourSelect.options[hourSelect.selectedIndex].value;
+    var minute  = minuteSelect.options[minuteSelect.selectedIndex].value;
+    var country = countrySelect.options[countrySelect.selectedIndex].value;
 
     // Save the setting.
-    widget.setPreferenceForKey(day, createKey("Day"));
-    widget.setPreferenceForKey(month, createKey("Month"));
-    widget.setPreferenceForKey(year, createKey("Year"));
-    widget.setPreferenceForKey(hour, createKey("Hour"));
-    widget.setPreferenceForKey(minute, createKey("Minute"));
+    widget.setPreferenceForKey(day,     createKey("Day"));
+    widget.setPreferenceForKey(month,   createKey("Month"));
+    widget.setPreferenceForKey(year,    createKey("Year"));
+    widget.setPreferenceForKey(hour,    createKey("Hour"));
+    widget.setPreferenceForKey(minute,  createKey("Minute"));
     widget.setPreferenceForKey(country, createKey("Country"));
 
-    // Set the new time.
-    Expires = new Date(year+1900, month, day, hour, minute, 00);
-    
+    // Set the new time and country.
+    Expires = new Date(year+1900, month, day, hour, minute, 00);    
     Country = country;
 
-    // Force a re-initialization just incase we have already
-    // stopped the timer.
+    // Force a re-initialization just incase we have already stopped the timer.
     hideSplash();
     displayCountry();
     displayTime();
