@@ -199,15 +199,32 @@ function hideSplash() {
 }
 
 /*
-setup() is run when the body loads.  It checks to see if there is a preference
-for this widget and if so, applies the preference to the widget.
-*/
-
+ * setup() is run when the body loads.  It checks to see if there is a preference
+ * for this widget and if so, applies the preference to the widget.
+ */
 function setup() {
+
     // Check we are running in Dashboard.
     if (window.widget) {}
-
+    
+    // Construct the button.
     createGenericButton(document.getElementById('done'), 'Back', hidePrefs);
+    
+    // Populate the dates.
+    var date = new Date();
+    var year = 1900 + date.getYear();
+    var years = new Array();
+    
+    // Update the year UI widget - 5 years into the future
+	var selectYear = document.getElementById("year");
+    for (var i=0; i<5; i++) {
+		var currYear = year + i;
+		var opt = document.createElement('option');
+		opt.text = currYear;
+		opt.value = currYear;
+		selectYear.add(opt, null);
+    }
+
 }
 
 // Show the preferences.

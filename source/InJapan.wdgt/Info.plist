@@ -5,13 +5,13 @@
 	<key>CFBundleDisplayName</key>
 	<string>InJapan</string>
 	<key>CFBundleIdentifier</key>
-	<string>uk.co.in7.injapan</string>
+	<string>uk.co.jbmorley.dashboard.injapan</string>
 	<key>CFBundleName</key>
 	<string>InJapan</string>
 	<key>CFBundleShortVersionString</key>
-	<string>InJapan 0.1</string>
+	<string>InJapan 0.3</string>
 	<key>CFBundleVersion</key>
-	<string>0.1.2</string>
+	<string>0.3.0</string>
 	<key>CloseBoxInsetX</key>
 	<integer>16</integer>
 	<key>CloseBoxInsetY</key>
