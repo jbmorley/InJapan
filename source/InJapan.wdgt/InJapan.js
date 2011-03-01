@@ -212,11 +212,15 @@ function setup() {
 
 	// Set the options.    
 	setOptionsYear('year');
-	setOptions('day', 0, 31, 1);
-	setOptions('month', 1, 12, 1);
+	setOptionsMonth('month');
+	setOptions('day', 1, 31, 1);
 	setOptions('hour', 0, 23, 1);    
     setOptions('minute', 0, 59, 5);
+    
+}
 
+function a(name, text, value) {
+	addOptionValue(name, text, value);
 }
 
 function addOptionValue(name, text, value) {
@@ -254,6 +258,22 @@ function setOptionsYear(name) {
 		addOptionValue(name, currYear, currYear);
     }
 }
+
+function setOptionsMonth(name) {
+    addOptionValue(name, 'Jan', 1);
+    addOptionValue(name, 'Feb', 2);
+    addOptionValue(name, 'Mar', 3);
+    addOptionValue(name, 'Apr', 4);
+    addOptionValue(name, 'May', 5);
+    addOptionValue(name, 'Jun', 6);
+    addOptionValue(name, 'Jul', 7);
+    addOptionValue(name, 'Aug', 8);
+    addOptionValue(name, 'Sep', 9);
+    addOptionValue(name, 'Oct', 10);
+    addOptionValue(name, 'Nov', 11);
+    addOptionValue(name, 'Dec', 12);
+}
+
 
 // Show the preferences.
 function showPrefs() {
