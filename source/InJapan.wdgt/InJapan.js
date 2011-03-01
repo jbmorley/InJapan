@@ -94,7 +94,7 @@ function savePreferences() {
     var year = yearSelect.selectedIndex + 105;
     var hour = hourSelect.selectedIndex;
     var minute = minuteSelect.selectedIndex;
-    var country = countrySelect.selectedIndex + 1;
+    var country = countrySelect.selectedIndex;
 
     // Save the setting.
     widget.setPreferenceForKey(day, createKey("Day"));
@@ -209,22 +209,50 @@ function setup() {
     
     // Construct the button.
     createGenericButton(document.getElementById('done'), 'Back', hidePrefs);
-    
+
+	// Set the options.    
+	setOptionsYear('year');
+	setOptions('day', 0, 31, 1);
+	setOptions('month', 1, 12, 1);
+	setOptions('hour', 0, 23, 1);    
+    setOptions('minute', 0, 59, 5);
+
+}
+
+function addOptionValue(name, text, value) {
+	var select = document.getElementById(name);
+	var opt = document.createElement('option');
+	opt.text = text;
+	opt.value = value;
+	select.add(opt, null);
+}
+
+function addOptionInteger(name, value) {
+	// Ensure the title is two digits.
+	var text = value;
+	if (text < 10) {
+		text = "0" + text;
+	}
+	addOptionValue(name, text, value);
+}
+
+function setOptions(name, min, max, inc) {
+	for (var i=min; i<max+1; i+=inc) {
+		addOptionInteger(name, i);
+	}
+}
+
+function setOptionsYear(name) {
     // Populate the dates.
     var date = new Date();
     var year = 1900 + date.getYear();
     var years = new Array();
     
     // Update the year UI widget - 5 years into the future
-	var selectYear = document.getElementById("year");
     for (var i=0; i<5; i++) {
-		var currYear = year + i;
-		var opt = document.createElement('option');
-		opt.text = currYear;
-		opt.value = currYear;
-		selectYear.add(opt, null);
+    	var currYear = year + i;
+		addOptionValue(name, currYear, currYear);
     }
-
 }
 
 // Show the preferences.
