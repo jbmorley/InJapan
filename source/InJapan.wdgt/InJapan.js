@@ -89,14 +89,6 @@ function selectOption(name, value) {
 			select.options[i].selected = true;
 		}
 	}
-	/*
-	for (options in select.options) {
-		if (options.value == value) {
-			options.selected = true;
-			break;
-		}
-	}
-	*/
 }
 
 function savePreferences() {
