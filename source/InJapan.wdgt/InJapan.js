@@ -44,12 +44,15 @@ function loadPreferences() {
         year = now.getYear();
         hour = now.getHours();
         minute = now.getMinutes();
+        
+        // Snap the minutes to multiples of 5.
+		minute = parseInt(minute/5) * 5;
 
         // Save these as the settings for this widget.
-        widget.setPreferenceForKey(day, createKey("Day"));
-        widget.setPreferenceForKey(month, createKey("Month"));
-        widget.setPreferenceForKey(year, createKey("Year"));
-        widget.setPreferenceForKey(hour, createKey("Hour"));
+        widget.setPreferenceForKey(day,    createKey("Day"));
+        widget.setPreferenceForKey(month,  createKey("Month"));
+        widget.setPreferenceForKey(year,   createKey("Year"));
+        widget.setPreferenceForKey(hour,   createKey("Hour"));
         widget.setPreferenceForKey(minute, createKey("Minute"));
 
     }
@@ -65,12 +68,12 @@ function loadPreferences() {
     }
 
     // Set the elements.
-    daySelect.options[day-1].selected = true;
-    monthSelect.options[month].selected = true;
-    yearSelect.options[year-105].selected = true;
-    hourSelect.options[hour].selected = true;
-    minuteSelect.options[minute].selected = true;
-    countrySelect.options[Country].selected = true;
+    selectOption('day', day);
+    selectOption('month', month+1);
+    selectOption('year', year+1900);
+    selectOption('hour', hour);
+    selectOption('minute', minute);
+    selectOption('country', country);
 
     // Set the time.
     Expires = new Date(year+1900, month, day, hour, minute, 00);
@@ -79,38 +82,45 @@ function loadPreferences() {
     displayCountry();     
 }
 
+function selectOption(name, value) {
+	var select = document.getElementById(name);
+	for (var i=0; i<select.options.length; i++) {
+		if (select.options[i].value == value) {
+			select.options[i].selected = true;
+		}
+	}
+}
+
 function savePreferences() {
     // Get the elements.
-    var daySelect = document.getElementById("day");
-    var monthSelect = document.getElementById("month");
-    var yearSelect = document.getElementById("year");
-    var hourSelect = document.getElementById("hour");
-    var minuteSelect = document.getElementById("minute");
+    var daySelect     = document.getElementById("day");
+    var monthSelect   = document.getElementById("month");
+    var yearSelect    = document.getElementById("year");
+    var hourSelect    = document.getElementById("hour");
+    var minuteSelect  = document.getElementById("minute");
     var countrySelect = document.getElementById("country");
 
     // Get the time.
-    var day = daySelect.selectedIndex + 1;
-    var month = monthSelect.selectedIndex;
-    var year = yearSelect.selectedIndex + 105;
-    var hour = hourSelect.selectedIndex;
-    var minute = minuteSelect.selectedIndex;
-    var country = countrySelect.selectedIndex;
+    var day     = daySelect.options[daySelect.selectedIndex].value;
+    var month   = monthSelect.options[monthSelect.selectedIndex].value - 1;
+    var year    = yearSelect.options[yearSelect.selectedIndex].value - 1900;
+    var hour    = hourSelect.options[hourSelect.selectedIndex].value;
+    var minute  = minuteSelect.options[minuteSelect.selectedIndex].value;
+    var country = countrySelect.options[countrySelect.selectedIndex].value;
 
     // Save the setting.
-    widget.setPreferenceForKey(day, createKey("Day"));
-    widget.setPreferenceForKey(month, createKey("Month"));
-    widget.setPreferenceForKey(year, createKey("Year"));
-    widget.setPreferenceForKey(hour, createKey("Hour"));
-    widget.setPreferenceForKey(minute, createKey("Minute"));
+    widget.setPreferenceForKey(day,     createKey("Day"));
+    widget.setPreferenceForKey(month,   createKey("Month"));
+    widget.setPreferenceForKey(year,    createKey("Year"));
+    widget.setPreferenceForKey(hour,    createKey("Hour"));
+    widget.setPreferenceForKey(minute,  createKey("Minute"));
     widget.setPreferenceForKey(country, createKey("Country"));
 
-    // Set the new time.
-    Expires = new Date(year+1900, month, day, hour, minute, 00);
-    
+    // Set the new time and country.
+    Expires = new Date(year+1900, month, day, hour, minute, 00);    
     Country = country;
 
-    // Force a re-initialization just incase we have already
-    // stopped the timer.
+    // Force a re-initialization just incase we have already stopped the timer.
     hideSplash();
     displayCountry();
     displayTime();
@@ -199,16 +209,81 @@ function hideSplash() {
 }
 
 /*
-setup() is run when the body loads.  It checks to see if there is a preference
-for this widget and if so, applies the preference to the widget.
-*/
-
+ * setup() is run when the body loads.  It checks to see if there is a preference
+ * for this widget and if so, applies the preference to the widget.
+ */
 function setup() {
+
     // Check we are running in Dashboard.
     if (window.widget) {}
-
+    
+    // Construct the button.
     createGenericButton(document.getElementById('done'), 'Back', hidePrefs);
+
+	// Set the options.    
+	setOptionsYear('year');
+	setOptionsMonth('month');
+	setOptions('day', 1, 31, 1);
+	setOptions('hour', 0, 23, 1);    
+    setOptions('minute', 0, 59, 5);
+    
 }
+
+function a(name, text, value) {
+	addOptionValue(name, text, value);
+}
+
+function addOptionValue(name, text, value) {
+	var select = document.getElementById(name);
+	var opt = document.createElement('option');
+	opt.text = text;
+	opt.value = value;
+	select.add(opt, null);
+}
+
+function addOptionInteger(name, value) {
+	// Ensure the title is two digits.
+	var text = value;
+	if (text < 10) {
+		text = "0" + text;
+	}
+	addOptionValue(name, text, value);
+}
+
+function setOptions(name, min, max, inc) {
+	for (var i=min; i<max+1; i+=inc) {
+		addOptionInteger(name, i);
+	}
+}
+
+function setOptionsYear(name) {
+    // Populate the dates.
+    var date = new Date();
+    var year = 1900 + date.getYear();
+    var years = new Array();
+    
+    // Update the year UI widget - 5 years into the future
+    for (var i=0; i<5; i++) {
+    	var currYear = year + i;
+		addOptionValue(name, currYear, currYear);
+    }
+}
+
+function setOptionsMonth(name) {
+    addOptionValue(name, 'Jan', 1);
+    addOptionValue(name, 'Feb', 2);
+    addOptionValue(name, 'Mar', 3);
+    addOptionValue(name, 'Apr', 4);
+    addOptionValue(name, 'May', 5);
+    addOptionValue(name, 'Jun', 6);
+    addOptionValue(name, 'Jul', 7);
+    addOptionValue(name, 'Aug', 8);
+    addOptionValue(name, 'Sep', 9);
+    addOptionValue(name, 'Oct', 10);
+    addOptionValue(name, 'Nov', 11);
+    addOptionValue(name, 'Dec', 12);
+}
+
 
 // Show the preferences.
 function showPrefs() {
