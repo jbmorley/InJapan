@@ -1,7 +1,7 @@
 InJapan
 =======
 
-Countdown widget for [OS X Dashboard](https://en.wikipedia.org/wiki/Dashboard_(Mac_OS))
+Countdown widget for [OS X Dashboard](https://en.wikipedia.org/wiki/Dashboard_(Mac_OS)).
 
 Originally written for a friend who wanted a countdown to his holiday in Japan, I have now added settings where you can change when the timer expires.
 
