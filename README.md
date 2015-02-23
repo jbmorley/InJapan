@@ -16,7 +16,7 @@ Screenshots
 
 ![Settings](/screenshots/ss.2.1.png)
 
-![Options](/screenshots/ss.3.1.png)
+![Options](/screenshots/flags.png)
 
 Changelog
 ---------
