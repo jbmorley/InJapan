@@ -19,8 +19,5 @@ echo "Creating '$build_directory'..."
 mkdir -p "$build_directory"
 
 pushd "$root_directory" > /dev/null
-
 cp -R source/InJapan.wdgt "$build_directory"
-open "$build_directory/InJapan.wdgt"
-
 popd > /dev/null
