@@ -16,4 +16,14 @@ Screenshots
 
 ![Options](/graphics/ss.3.1.png)
 
+Thanks
+------
+
+Many thanks to:
+
+- [Mason Mouse](http://masonmouse.deviantart.com/) for the artwork
+
 License
+-------
+
+InJapan is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
