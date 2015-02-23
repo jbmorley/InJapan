@@ -28,6 +28,6 @@ popd > /dev/null
 
 echo "Creating archives..."
 pushd "$build_directory" > /dev/null
-zip -r "InJapan-$version.zip" "InJapan.wdgt"
-tar -zcf "InJapan-$version.tar.gz" "InJapan.wdgt"
+zip -r "injapan-$version.zip" "InJapan.wdgt"
+tar -zcf "injapan-$version.tar.gz" "InJapan.wdgt"
 popd > /dev/null
