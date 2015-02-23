@@ -2,6 +2,8 @@
 
 set -e
 
+version="0.4.0"
+
 function normalize() {
     echo $( cd "$1" && pwd )
 }
@@ -19,6 +21,13 @@ fi
 echo "Creating '$build_directory'..."
 mkdir -p "$build_directory"
 
+echo "Copying source..."
 pushd "$root_directory" > /dev/null
 cp -R "$source_directory" "$build_directory/InJapan.wdgt"
+popd > /dev/null
+
+echo "Creating archives..."
+pushd "$build_directory" > /dev/null
+zip -r "InJapan-$version.zip" "InJapan.wdgt"
+tar -zcf "InJapan-$version.tar.gz" "InJapan.wdgt"
 popd > /dev/null
