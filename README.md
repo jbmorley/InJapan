@@ -12,7 +12,7 @@ Screenshots
 
 ![Yosemite](/screenshots/yosemite.png)
 
-![Countdown Timer](/screenshots/ss.1.1.png)
+![Widget](/screenshots/widget.png)
 
 ![Settings](/screenshots/settings.png)
 
