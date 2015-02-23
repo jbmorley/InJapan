@@ -10,6 +10,8 @@ In v0.2.0, I’ve added support for different flags. The current version has the
 Screenshots
 -----------
 
+![Yosemite](/screenshots/yosemite.png)
+
 ![Countdown Timer](/screenshots/ss.1.1.png)
 
 ![Settings](/screenshots/ss.2.1.png)
