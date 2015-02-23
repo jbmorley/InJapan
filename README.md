@@ -16,6 +16,17 @@ Screenshots
 
 ![Options](/screenshots/ss.3.1.png)
 
+Changelog
+---------
+
+### Version 0.4.0
+
+- Updating license details
+
+### Version 1.0.0
+
+- Initial release
+
 Thanks
 ------
 
