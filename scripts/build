@@ -8,6 +8,7 @@ function normalize() {
 
 scripts_directory=$(normalize $(dirname "${BASH_SOURCE[0]}"))
 root_directory=$(normalize "$scripts_directory/..")
+source_directory=$(normalize "$root_directory/source")
 build_directory="$root_directory/build"
 
 if [[ -e "$build_directory" ]]; then
@@ -19,5 +20,5 @@ echo "Creating '$build_directory'..."
 mkdir -p "$build_directory"
 
 pushd "$root_directory" > /dev/null
-cp -R source/InJapan.wdgt "$build_directory"
+cp -R "$source_directory" "$build_directory/InJapan.wdgt"
 popd > /dev/null
