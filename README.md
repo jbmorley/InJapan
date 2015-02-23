@@ -5,7 +5,7 @@ A countdown widget for [OS X Dashboard](https://en.wikipedia.org/wiki/Dashboard_
 
 Originally written for a friend who wanted a countdown to his holiday in Japan, I have now added settings where you can change when the timer expires.
 
-In v0.2.0, I’ve added support for different flags. The current version has the current Japan flag, the older-style Japan flag, the Union Jack and the Stars and Stripes.
+In v0.2.0, I’ve added support for different flags. The current version has the current Japanese flag, the older-style Japanese flag, the Union Jack and the Stars and Stripes.
 
 Screenshots
 -----------
