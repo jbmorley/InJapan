@@ -14,7 +14,7 @@ Screenshots
 
 ![Countdown Timer](/screenshots/ss.1.1.png)
 
-![Settings](/screenshots/ss.2.1.png)
+![Settings](/screenshots/settings.png)
 
 ![Options](/screenshots/flags.png)
 
